@@ -67,4 +67,15 @@ public class CreditCardTest {
         }
 
     }
+    @Test
+    void itDenyAssignCreditLimitTwice(){
+        CreditCard card1 = new CreditCard("1234-5678");
+        card1.assignLimit(BigDecimal.valueOf(1000));
+        try {
+            card1.assignLimit(BigDecimal.valueOf(1000));
+            fail("Should throw exception");
+        } catch (CreditWasAssigned e) {
+            assertTrue(true);
+        }
+    }
 }
